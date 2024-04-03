@@ -25,9 +25,7 @@ public class AccountServiceImpl implements AccountService{
     private CreditRepository creditRepository;
     @Autowired
     private DebitRepository debitRepository;
-    //models
-//    Credit credit = new Credit();
-//    Debit debit = new Debit();
+
     public Boolean checkSufficientBalance(String senderAccountNumber, Long amount){
         Optional<Account> senderAccountOpt = accountRepository.findByAccountNumber(senderAccountNumber);
         return senderAccountOpt.map(senderAccount -> senderAccount.getBalance().compareTo(amount) >= 0).orElse(false);
