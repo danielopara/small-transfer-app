@@ -1,4 +1,4 @@
-# small-transfer-app
+# Small-transfer-app
 
 ## Introduction
 
@@ -19,5 +19,5 @@ The Fund Transfer Service is a Java-based Spring Boot application that provides 
 
 The Fund Transfer Service is designed to meet the financial transaction needs of your application while ensuring data security and accuracy. This documentation will guide you on how to use and integrate the service effectively.
 
-**Note:** This document provides an overview. For detailed information on usage and implementation, please refer to the sections and documentation that follow.
-
+> [!NOTE]
+> This document provides an overview. For detailed information on usage and implementation, please refer to the sections and documentation that follow.
