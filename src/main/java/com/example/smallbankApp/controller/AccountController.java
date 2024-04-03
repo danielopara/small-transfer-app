@@ -29,10 +29,19 @@ public class AccountController {
     public ResponseEntity<String> getAccountName(@RequestParam String accountNumber){
         Optional<Account> findAccount = accountService.findByAccountNumber(accountNumber);
         if (findAccount.isPresent()) {
-//            return ResponseEntity.ok(findAccount.get().account_name);
             return ResponseEntity.status(HttpStatus.OK).body(findAccount.get().account_name);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User does not exist");
+        }
+    }
+
+    @GetMapping("/get-balance")
+    public ResponseEntity<?> getAccountBalance(@RequestParam String accountNumber) throws AccountNotFoundException {
+        Optional<Account> findAccount = accountService.findByAccountNumber(accountNumber);
+        if (findAccount.isPresent()) {
+            return ResponseEntity.status(HttpStatus.OK).body(findAccount.get().balance);
+        } else {
+            throw  new AccountNotFoundException("Account not found");
         }
     }
 
