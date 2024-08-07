@@ -2,11 +2,12 @@
 
 ## Introduction
 
-Welcome to the documentation for the Fund Transfer Service, a Spring Boot application designed to facilitate fund transfers between user accounts. This document provides an overview of the application's purpose, features, and key specifications.
+Welcome to the documentation for a small Transfer Service.
+A Spring Boot application designed to facilitate fund transfers between user accounts. This document provides an overview of the application's purpose, features, and key specifications.
 
 ## Application Overview
 
-The Fund Transfer Service is a Java-based Spring Boot application that provides a secure and efficient way to transfer funds between user accounts. It ensures the integrity of financial transactions and provides a user-friendly interface for account management.
+The Transfer Service is a Java-based Spring Boot application that provides a secure and efficient way to transfer funds between user accounts. It ensures the integrity of financial transactions and provides a user-friendly interface for account management.
 ## **Access the Application**:
 The application will be accessible at `http://localhost:8081`.
 
