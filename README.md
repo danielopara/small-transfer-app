@@ -1,13 +1,13 @@
-# Small-transfer-app
+# Small-Money-Transfer-App
 
 ## Introduction
 
-Welcome to the documentation for a small Transfer Service.
+Welcome to the documentation for a small Money Transfer Service.
 A Spring Boot application designed to facilitate fund transfers between user accounts. This document provides an overview of the application's purpose, features, and key specifications.
 
 ## Application Overview
 
-The Transfer Service is a Java-based Spring Boot application.
+The Money Transfer Service is a Java-based Spring Boot application.
 It started out as an API only using the beginner knowledge I had in Spring framework.
 A frontend will be added shortly using Thymeleaf.
 The application is simple and plain. The user can create multiple users if successful an account will be generated,
@@ -27,11 +27,17 @@ and funded with an amount of money which transactions can be done with.
 ![Model](model.png)
 
 ## App directory
-This application
+-  **config:** This contains the swagger documentation
+- **controller:** The rest controller setup
+- **dto:** It holds the response classes and the user creation dto
+- **enums:** It holds the enums type
+- **model:** The model entity class
+- **repository:** Contains the JPA repository class
+- **service:** The business logic
 
+[//]: # (## **Access the Application**:)
 
-## **Access the Application**:
-The application will be accessible at `http://localhost:8081`.
+[//]: # (The application will be accessible at `http://localhost:8081`.)
 
 > [!NOTE]
 > This document provides an overview. For detailed information on usage and implementation, please refer to the sections and documentation that follow.
