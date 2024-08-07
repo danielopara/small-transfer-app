@@ -14,21 +14,20 @@ The application is simple and plain. The user can create multiple users if succe
 and funded with an amount of money which transactions can be done with.
 
 
-
-
 ## Specifications
 
 - **Technology Stack**: Java, Spring Boot.
 - **Database**: Compatible relational databases (e.g., MySQL).
 - **API Interface**: RESTful API for easy integration with other applications.
 - **Error Handling**: Comprehensive error handling for various scenarios, including insufficient balance and account not found.
-- **Documentation**: Detailed documentation to assist developers in using the service.
+- **Documentation**: Detailed documentation to assist developers in using the service on Swagger.
 - **Contribution**: Open to contributions from the community (see contributing guidelines).
 
-The Fund Transfer Service is designed to meet the financial transaction needs of your application while ensuring data security and accuracy. This documentation will guide you on how to use and integrate the service effectively.
+## Model
+![Model](model.png)
 
 ## App directory
-This application 
+This application
 
 
 ## **Access the Application**:
