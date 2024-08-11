@@ -14,4 +14,9 @@ public class TransactionResponse {
     private Long amountTransferred;
     private Long senderBeforeBalance;
     private Long senderUpdatedBalance;
+
+    private String receiverAccountName;
+    private String receiverAccountNumber;
+    private Long receiverBeforeBalance;
+    private Long receiverUpdatedBalance;
 }
