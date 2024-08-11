@@ -92,7 +92,13 @@ public class AccountServiceImpl implements AccountService{
                         senderAccount.getAccountNumber(),
                         moneyTransferred,
                         senderBeforeBalance,
-                        senderAccount.getBalance());
+                        senderAccount.getBalance(),
+
+                        receiverAccount.getAccount_name(),
+                        receiverAccount.getAccountNumber(),
+                        receiverBeforeBalance,
+                        receiverAccount.getBalance()
+                );
             } else {
                 throw new InsufficientBalanceException("Insufficient balance in the sender's account.");
             }
