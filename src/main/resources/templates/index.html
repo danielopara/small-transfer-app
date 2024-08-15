@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Small Bank App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        h2 {
+            margin-top: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 10px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background-color: #fff;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        form label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        form input, form select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        form button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        form button:hover {
+            background-color: #555;
+        }
+        .transaction-details, .user-creation-details {
+            background-color: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+        }
+        .error {
+            color: red;
+            background-color: #fdd;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        .credited {
+           color: green;
+           }
+        .debited {
+        color: red;
+        }
+    </style>
+</head>
+<body>
+<h1>Small Bank App</h1>
+
+<h2>All Accounts</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Account Number</th>
+        <th>Account Name</th>
+        <th>Balance</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="account : ${accounts}">
+        <td th:text="${account.accountNumber}"></td>
+        <td th:text="${account.account_name}"></td>
+        <td th:text="${account.balance}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<h2>Transfer Money</h2>
+<form action="/transfer" method="post">
+    <label for="senderAccountNumber">Sender Account Number:</label>
+    <input type="text" id="senderAccountNumber" name="senderAccountNumber" required>
+
+    <label for="receiverAccountNumber">Receiver Account Number:</label>
+    <input type="text" id="receiverAccountNumber" name="receiverAccountNumber" required>
+
+    <label for="amount">Amount:</label>
+    <input type="number" id="amount" name="amount" required>
+
+    <button type="submit">Transfer</button>
+</form>
+
+<div th:if="${transactionResponse != null}" class="transaction-details">
+    <h3>Transaction Details</h3>
+    <p>Sender Account Name: <span th:text="${transactionResponse.accountName}"></span></p>
+    <p>Sender Account Number: <span th:text="${transactionResponse.accountNumber}"></span></p>
+    <p>Amount Transferred: <span th:text="${transactionResponse.amountTransferred}"></span></p>
+    <p>Balance Before: <span th:text="${transactionResponse.senderBeforeBalance}"></span></p>
+    <p>Balance After: <span th:text="${transactionResponse.senderUpdatedBalance}"></span></p>
+
+    <br>
+
+    <p>Receiver Account Name: <span th:text="${transactionResponse.receiverAccountName}"></span></p>
+    <p>Receiver Account Number: <span th:text="${transactionResponse.receiverAccountNumber}"></span></p>
+    <p>Receiver Balance Before: <span th:text="${transactionResponse.receiverBeforeBalance}"></span></p>
+    <p>Receiver Balance After: <span th:text="${transactionResponse.receiverUpdatedBalance}"></span></p>
+</div>
+
+<h2>Create User</h2>
+<form action="/createUser" method="post">
+    <label for="firstName">First Name:</label>
+    <input type="text" id="firstName" name="first_name" required>
+
+    <label for="lastName">Last Name:</label>
+    <input type="text" id="lastName" name="last_name" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="text" id="phoneNumber" name="phoneNumber" required>
+
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required>
+
+    <label for="gender">Gender:</label>
+    <select id="gender" name="gender" required>
+        <option value="MALE">Male</option>
+        <option value="FEMALE">Female</option>
+    </select>
+
+    <label for="accountType">Account Type:</label>
+    <select id="accountType" name="accountType" required>
+        <option value="SAVINGS">Savings</option>
+        <option value="CURRENT">Current</option>
+    </select>
+
+    <button type="submit">Create User</button>
+</form>
+
+<div th:if="${userCreationResponse != null}" class="user-creation-details">
+    <h3>User Creation Details</h3>
+    <p>Status: <span th:text="${userCreationResponse.description}"></span></p>
+    <p>Account Number: <span th:text="${userCreationResponse.data.account_number}"></span></p>
+</div>
+
+<div th:if="${error != null}" class="error">
+    <p>Error: <span th:text="${error}"></span></p>
+</div>
+</body>
+</html>

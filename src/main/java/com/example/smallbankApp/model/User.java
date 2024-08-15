@@ -43,6 +43,7 @@ public class User {
     @NotNull
     public LocalDate dob;
 //    @JsonIgnore
+    @Enumerated(EnumType.STRING)
     public AccountType accountType;
 
 }

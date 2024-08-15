@@ -1,5 +1,6 @@
 package com.example.smallbankApp.controller;
 
+import com.example.smallbankApp.dto.UserDto;
 import com.example.smallbankApp.exceptions.EmailExistsException;
 import com.example.smallbankApp.exceptions.PhoneNumberExistsException;
 import com.example.smallbankApp.model.User;
@@ -17,8 +18,9 @@ public class UserController {
     @Autowired
     private UserService userService;
     @PostMapping("/create")
-    public ResponseEntity<User> createUser(@RequestBody User user) throws PhoneNumberExistsException, EmailExistsException {
-        return new ResponseEntity<User>(userService.createUserAndAccount(user), HttpStatus.CREATED);
+    public ResponseEntity<?> createUser(@RequestBody UserDto user) throws PhoneNumberExistsException, EmailExistsException {
+
+        return new ResponseEntity<>(userService.createUserAndAccount(user), HttpStatus.CREATED);
     }
 
     @GetMapping("/allUsers")

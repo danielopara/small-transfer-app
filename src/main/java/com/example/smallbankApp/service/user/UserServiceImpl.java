@@ -1,15 +1,21 @@
 package com.example.smallbankApp.service.user;
 
+import com.example.smallbankApp.dto.BaseResponse;
+import com.example.smallbankApp.dto.UserDto;
 import com.example.smallbankApp.exceptions.EmailExistsException;
 import com.example.smallbankApp.exceptions.PhoneNumberExistsException;
 import com.example.smallbankApp.model.Account;
 import com.example.smallbankApp.model.User;
 import com.example.smallbankApp.repository.AccountRepository;
 import com.example.smallbankApp.repository.UserRepository;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 @Service
 public class UserServiceImpl implements UserService {
@@ -18,6 +24,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AccountRepository accountRepository;
 
+    //generating account number
     private String generateRandomAccountNumber() {
         Random random = new Random();
         StringBuilder accountNumberBuilder = new StringBuilder();
@@ -28,12 +35,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUserAndAccount(User user) throws EmailExistsException, PhoneNumberExistsException {
+    public BaseResponse createUserAndAccount(UserDto user) throws EmailExistsException, PhoneNumberExistsException {
+        BaseResponse response = new BaseResponse();
         if(userRepository.existsByEmail(user.getEmail())){
                 throw new EmailExistsException("email already exists");
         }
         if(userRepository.existsByPhoneNumber(user.getPhoneNumber())){
             throw new PhoneNumberExistsException("phone number already exists");
+        }
+
+        LocalDate dob = user.getDob();
+        LocalDate currentDate = LocalDate.now();
+        if(dob.plusYears(16).isAfter(currentDate) || dob.plusYears(16).equals(currentDate)){
+            response.setDescription("User must be more than 16 years old");
+            response.setStatusCode(HttpServletResponse.SC_CONFLICT);
+            return response;
         }
 
         User createUser = User.builder()
@@ -54,8 +70,16 @@ public class UserServiceImpl implements UserService {
                                                 .balance(1000L)
                                                         .build();
         accountRepository.save(account);
+        Map<String, Object> objectResponse = new HashMap<>();
+        objectResponse.put("account_number", account.getAccountNumber());
+        objectResponse.put("user_details", user);
 
-        return createUser;
+        response.setDescription("User created");
+        response.setError(null);
+        response.setStatusCode(HttpServletResponse.SC_OK);
+        response.setData(objectResponse);
+
+        return response;
     }
 
     @Override
