@@ -24,6 +24,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AccountRepository accountRepository;
 
+    //generating account number
     private String generateRandomAccountNumber() {
         Random random = new Random();
         StringBuilder accountNumberBuilder = new StringBuilder();

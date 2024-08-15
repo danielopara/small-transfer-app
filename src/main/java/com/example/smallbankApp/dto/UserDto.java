@@ -18,15 +18,11 @@ public class UserDto {
 
     public String email;
 
-    @Size(min = 11, max = 11, message = "Phone number must be 11 characters long")
-    @Pattern(regexp = "^[0-9]*$", message = "Phone number must contain only numeric characters")
     public String phoneNumber;
-    @NotNull
     @Enumerated(EnumType.STRING)
     public Gender gender;
 
     public LocalDate dob;
     //    @JsonIgnore
-    @Enumerated(EnumType.STRING)
     public AccountType accountType;
 }
