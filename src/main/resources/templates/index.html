@@ -174,10 +174,41 @@
     <button type="submit">Create User</button>
 </form>
 
+<!--<form action="/createUser" method="post" th:object="${userDto}">-->
+<!--    <label for="firstName">First Name:</label>-->
+<!--    <input type="text" id="firstName" name="first_name" required th:value="*{first_name}">-->
+
+<!--    <label for="lastName">Last Name:</label>-->
+<!--    <input type="text" id="lastName" name="last_name" required th:value="*{last_name}">-->
+
+<!--    <label for="email">Email:</label>-->
+<!--    <input type="email" id="email" name="email" required th:value="*{email}">-->
+
+<!--    <label for="phoneNumber">Phone Number:</label>-->
+<!--    <input type="text" id="phoneNumber" name="phoneNumber" required th:value="*{phoneNumber}">-->
+
+<!--    <label for="dob">Date of Birth:</label>-->
+<!--    <input type="date" id="dob" name="dob" required th:value="*{dob}">-->
+
+<!--    <label for="gender">Gender:</label>-->
+<!--    <select id="gender" name="gender" required>-->
+<!--        <option th:value="MALE" th:selected="*{gender == 'MALE'}">Male</option>-->
+<!--        <option th:value="FEMALE" th:selected="*{gender == 'FEMALE'}">Female</option>-->
+<!--    </select>-->
+
+<!--    <label for="accountType">Account Type:</label>-->
+<!--    <select id="accountType" name="accountType" required>-->
+<!--        <option th:value="SAVINGS" th:selected="*{accountType == 'SAVINGS'}">Savings</option>-->
+<!--        <option th:value="CURRENT" th:selected="*{accountType == 'CURRENT'}">Current</option>-->
+<!--    </select>-->
+
+<!--    <button type="submit">Create User</button>-->
+<!--</form>-->
+
 <div th:if="${userCreationResponse != null}" class="user-creation-details">
     <h3>User Creation Details</h3>
     <p>Status: <span th:text="${userCreationResponse.description}"></span></p>
-    <p>Account Number: <span th:text="${userCreationResponse.data.account_number}"></span></p>
+<!--    <p>Account Number: <span th:text="${userCreationResponse.data}"></span></p>-->
 </div>
 
 <div th:if="${error != null}" class="error">

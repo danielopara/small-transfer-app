@@ -63,6 +63,7 @@ public class AppController {
             model.addAttribute("users", userService.getAllUsers());
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
+            model.addAttribute("userDto", userDto);
         }
         return "index";
     }
